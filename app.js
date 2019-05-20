@@ -25,17 +25,57 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/service',function(request, response){
-    //response.send('OK');
     var qParam = request.query.q;
     var dParam = request.query.d;
 
-    if(qParam == "Ping"){
+    switch(qParam)
+    {
+        case "Ping":
 	response.send("OK");
-    }
-    else if(qParam == "Puzzle"){
+	break;
+	
+	case "Name":
+	response.send("Sze Ming Chan");
+	break;
+	
+	case "Phone":
+	response.send("646-269-7616");
+	break;
 
+	case "Position":
+	response.send("Integration Engineer");
+	break;
+
+	case "Degree":
+	response.send("Masters of Science and Bachelors in Computer Science");
+	break;
+
+	case "Years":
+	response.send("6 Years Experience in Software Development");
+	break;
+
+	case "Referrer":
+	response.send("Kenrick Guie");
+	break;
+
+	case "Resume":
+	response.send("https://github.com/hellosze/emxdigital-programming-exercise/blob/master/SzeChan_EMX_Resume_CoverLetter_2019.pdf");
+	break;
+	
+	case "Source":
+	response.send("https://github.com/hellosze/emxdigital-programming-exercise");
+	break;
+
+	case "Status":
+	response.send("I can provide proof of work eligibility, I am a US Citizen");
+	break;
+
+	case "Email Address":
+	response.send("sze.chan@acm.org");
+	break;
+	
+        case "Puzzle":
 	question = dParam.split("\n").slice(1,6).join(" ");
-	console.log("question: "+question);
 	results = puzzleSolver(question.trim());
 
 	response.write(results[0]+"\n");
@@ -45,9 +85,11 @@ app.get('/service',function(request, response){
 	response.write(results[4]+"\n");	
 
 	response.end();
-    }
-    else {
+	break;
+	
+	default:
 	response.send(request.query.q);
+	break;
     }
 });
 
