@@ -34,6 +34,7 @@ a = facts[0];
 b = facts[1];
 c = facts[2];
 
+//String merge function
 var merge = function(a,b,c){
         if(a[a.length-1] == b[0]){
                 return a.slice(0,a.length) + b.slice(1,b.length);
@@ -59,7 +60,31 @@ while(a.length < 13)
 
 sort_order = a.split(" < ");
 
+//Example sort order: [4,1,2,3] or 4 < 1 < 2 < 3
+/***
+Example array structure for puzzle with = filled across AA, BB, CC, DD cells
+┌─────────┬─────┬─────┬─────┬─────┬─────┐
+│ (index) │  0  │  1  │  2  │  3  │  4  │
+├─────────┼─────┼─────┼─────┼─────┼─────┤
+│    0    │ ' ' │ 'A' │ 'B' │ 'C' │ 'D' │
+│    1    │ 'A' │ '=' │ '-' │ '>' │ '-' │
+│    2    │ 'B' │ '-' │ '=' │ '-' │ '<' │
+│    3    │ 'C' │ '-' │ '-' │ '=' │ '>' │
+│    4    │ 'D' │ '-' │ '-' │ '-' │ '=' │
+└─────────┴─────┴─────┴─────┴─────┴─────┘
 
+Solution: [2,4,3,1] or 2 < 4 < 3 < 1 derived from cells AC, BD, CD
+┌─────────┬─────┬─────┬─────┬─────┬─────┐
+│ (index) │  0  │  1  │  2  │  3  │  4  │
+├─────────┼─────┼─────┼─────┼─────┼─────┤
+│    0    │ ' ' │ 'A' │ 'B' │ 'C' │ 'D' │
+│    1    │ 'A' │ '=' │ '>' │ '>' │ '>' │
+│    2    │ 'B' │ '<' │ '=' │ '<' │ '<' │
+│    3    │ 'C' │ '<' │ '>' │ '=' │ '>' │
+│    4    │ 'D' │ '<' │ '>' │ '<' │ '=' │
+└─────────┴─────┴─────┴─────┴─────┴─────┘
+
+***/
 //Fill in all entries of puzzle table with < or >
 array[sort_order[0]][sort_order[1]] = "<";
 array[sort_order[0]][sort_order[2]] = "<";
